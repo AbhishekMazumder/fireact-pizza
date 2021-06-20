@@ -5,7 +5,7 @@ import { Title } from '../Styles/tilte';
 
 const NavbarStyled = styled.div`
 	background-color: ${pizzaRed};
-	padding: 10px;
+	padding: 10px 5vh;
 	position: fixed;
 	width: 100%;
 `;
