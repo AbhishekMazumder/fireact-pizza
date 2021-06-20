@@ -7,12 +7,12 @@ export const FoodGrid = styled.div`
 	gap: 20px;
 `;
 
-export const FoodItem = styled(Title)`
-	height: 100px;
+export const FoodItem = styled.div`
+	height: 120px;
 	padding: 10px;
 	border-radius: 6px;
-  font-size: 20px;
-  margin-top: 5px;
+	font-size: 20px;
+	margin-top: 5px;
 	background-image: ${({ img }) => `url(${img})`};
 	background-position: center;
 	background-size: cover;
@@ -22,13 +22,13 @@ export const FoodItem = styled(Title)`
 	&:hover {
 		cursor: pointer;
 		box-shadow: 2px 3px 15px 0px black;
-    filter: contrast(100%);
-    margin-top: 0px;
-    margin-bottom: 5px;
+		filter: contrast(100%);
+		margin-top: 0px;
+		margin-bottom: 5px;
 	}
 `;
 
-export const FoodLabel = styled.div`
+export const FoodLabel = styled(Title)`
 	position: absolute;
 	padding: 3px;
 	background-color: white;
