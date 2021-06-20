@@ -11,14 +11,20 @@ export const FoodItem = styled(Title)`
 	height: 100px;
 	padding: 10px;
 	border-radius: 6px;
-	font-size: 20px;
+  font-size: 20px;
+  margin-top: 5px;
 	background-image: ${({ img }) => `url(${img})`};
 	background-position: center;
 	background-size: cover;
-	box-shadow: 2px 3px 12px 0px grey;
+	filter: contrast(85%);
+	box-shadow: 2px 3px 10px 0px grey;
+	transition: all 0.2s linear;
 	&:hover {
 		cursor: pointer;
-		opacity: 0.9;
+		box-shadow: 2px 3px 15px 0px black;
+    filter: contrast(100%);
+    margin-top: 0px;
+    margin-bottom: 5px;
 	}
 `;
 
