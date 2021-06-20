@@ -1,8 +1,12 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
+import Navbar from './Navbar/Navbar';
 
 const GlobalStyle = createGlobalStyle`
   body {
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
     background-color: yellow;
     font-family: 'Open Sans', sans-serif;
   }
@@ -16,10 +20,7 @@ function App() {
 	return (
 		<>
 			<GlobalStyle />
-			<div className="App">
-				<h1>Hello App</h1>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque aut nihil in, sed nemo ipsa quis, eius ad rerum quod voluptatibus quasi hic deleniti illo, maiores natus esse tempore culpa?
-			</div>
+			<Navbar />
 		</>
 	);
 }
