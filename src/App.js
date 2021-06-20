@@ -24,7 +24,6 @@ function App() {
 			<Navbar />
       <Banner />
       <Menu />
-      <div>Content</div>
 		</>
 	);
 }
