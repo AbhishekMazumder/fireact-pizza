@@ -6,7 +6,8 @@ import { foods } from '../Data/foodData';
 const MenuStyled = styled.div`
 	/* border: 3px solid black; */
 	height: auto;
-	margin: 0px 400px 50px 20px;
+	margin: 0px 400px 50px 37px;
+	/* margin: 50px 10vw; */
 `;
 
 function Menu({ setOpenFood }) {

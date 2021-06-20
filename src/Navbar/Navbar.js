@@ -7,7 +7,8 @@ const NavbarStyled = styled.div`
 	background-color: ${pizzaRed};
 	padding: 10px 5vh;
 	position: fixed;
-	width: 100%;
+  width: 100%;
+  z-index:9999;
 `;
 
 const Logo = styled(Title)`
