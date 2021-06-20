@@ -2,13 +2,13 @@ import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import Navbar from './Navbar/Navbar';
 import { Banner } from './Banner/Banner';
+import Menu from './Menu/Menu';
 
 const GlobalStyle = createGlobalStyle`
   body {
     margin:0;
     padding: 0;
     box-sizing: border-box;
-    background-color: yellow;
     font-family: 'Open Sans', sans-serif;
   }
   
@@ -23,6 +23,7 @@ function App() {
 			<GlobalStyle />
 			<Navbar />
       <Banner />
+      <Menu />
       <div>Content</div>
 		</>
 	);
