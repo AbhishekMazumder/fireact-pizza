@@ -6,7 +6,7 @@ import {
 	ConfirmBtn,
 } from '../FoodDialog/FoodDialog';
 import { formatPrice } from '../Data/foodData';
-
+import { getPrice } from '../FoodDialog/FoodDialog';
 
 const OrderStyled = styled.div`
 	position: fixed;
@@ -30,16 +30,16 @@ const OrderContent = styled(DialogContent)`
 	text-align: center;
 `;
 
-const OrderContainer= styled.div`
+const OrderContainer = styled.div`
 	padding: 10px 0;
 	border-bottom: 2px solid #eee;
-`
+`;
 
 const OrderItem = styled.div`
-padding: 10px 0;
-display: grid;
-grid-template-columns: 20px 150px 60px 20px;
-`
+	padding: 10px 0;
+	display: grid;
+	grid-template-columns: 20px 150px 60px 20px;
+`;
 
 function Order({ orders }) {
 	return (
@@ -52,9 +52,9 @@ function Order({ orders }) {
 					{orders.map(order => (
 						<OrderContainer>
 							<OrderItem>
-								<div>1</div>
+								<div>{order.quantity}</div>
 								<div>{order.name}</div>
-								<div>{formatPrice(order.price)}</div>
+								<div>{formatPrice(getPrice(order))}</div>
 								<div>delete</div>
 							</OrderItem>
 						</OrderContainer>
