@@ -11,8 +11,9 @@ const OrderStyled = styled.div`
 	top: 57.5px;
 	right: 0;
 	width: 350px;
-  height: auto;
-  height: 680px;
+	height: 89vh;
+	/* min-height: 100px; */
+	/* height: 680px; */
 	/* border: 1px solid orange; */
 	background-color: white;
 	z-index: 10;
@@ -27,10 +28,15 @@ const OrderContent = styled(DialogContent)`
 	text-align: center;
 `;
 
-function Order() {
+function Order({ orders }) {
 	return (
 		<OrderStyled>
-			<OrderContent>Your have no pending order!</OrderContent>
+			{orders.length === 0 ? (
+				<OrderContent>Your have no pending order!</OrderContent>
+			) : (
+				<OrderContent>{orders.length} items found</OrderContent>
+			)}
+
 			<DialogFooter>
 				<ConfirmBtn>checkout</ConfirmBtn>
 			</DialogFooter>

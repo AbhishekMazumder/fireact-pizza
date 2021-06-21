@@ -37,9 +37,9 @@ const DialogBanner = styled.div`
 `;
 
 const DialogBannerLabel = styled(FoodLabel)`
-  font-size: 28px;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+	font-size: 28px;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
 `;
 
 export const DialogContent = styled.div`
@@ -57,8 +57,8 @@ export const ConfirmBtn = styled.button`
 	margin: 10px;
 	/* font-size:15px; */
 	background-color: ${pizzaRed};
-  font-family: 'Righteous', cursive;
-  letter-spacing: 1.3px;
+	font-family: 'Righteous', cursive;
+	letter-spacing: 1.3px;
 	border: none;
 	color: white;
 	padding: 10px;
@@ -68,17 +68,31 @@ export const ConfirmBtn = styled.button`
 	text-transform: uppercase;
 `;
 
-const FoodDialog = ({ openFood, setOpenFood }) => {
+const FoodDialog = ({ openFood, setOpenFood, setOrders, orders }) => {
+	const order = { ...openFood };
+	const closeDialog = () => {
+		setOpenFood();
+	};
+
+	console.log(order);
+
+	const addToOrder = () => {
+		setOrders([...orders, order]);
+		closeDialog();
+	};
+
+	console.log(orders);
+
 	return openFood ? (
 		<>
-			<DialogShadow onClick={() => setOpenFood(null)} />
+			<DialogShadow onClick={closeDialog} />
 			<Dialog>
 				<DialogBanner img={openFood.img}>
 					<DialogBannerLabel>{openFood.name}</DialogBannerLabel>
 				</DialogBanner>
 				<DialogContent>Content</DialogContent>
 				<DialogFooter>
-					<ConfirmBtn>Order</ConfirmBtn>
+					<ConfirmBtn onClick={addToOrder}>Order</ConfirmBtn>
 				</DialogFooter>
 			</Dialog>
 		</>

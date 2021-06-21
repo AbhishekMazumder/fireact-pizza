@@ -8,7 +8,7 @@ const NavbarStyled = styled.div`
 	padding: 10px 5vh;
 	position: fixed;
   width: 100%;
-  z-index:9999;
+  z-index: 3;
 `;
 
 const Logo = styled(Title)`
