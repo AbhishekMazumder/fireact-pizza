@@ -5,6 +5,8 @@ import {
 	DialogFooter,
 	ConfirmBtn,
 } from '../FoodDialog/FoodDialog';
+import { formatPrice } from '../Data/foodData';
+
 
 const OrderStyled = styled.div`
 	position: fixed;
@@ -28,13 +30,36 @@ const OrderContent = styled(DialogContent)`
 	text-align: center;
 `;
 
+const OrderContainer= styled.div`
+	padding: 10px 0;
+	border-bottom: 2px solid #eee;
+`
+
+const OrderItem = styled.div`
+padding: 10px 0;
+display: grid;
+grid-template-columns: 20px 150px 60px 20px;
+`
+
 function Order({ orders }) {
 	return (
 		<OrderStyled>
 			{orders.length === 0 ? (
 				<OrderContent>Your have no pending order!</OrderContent>
 			) : (
-				<OrderContent>{orders.length} items found</OrderContent>
+				<OrderContent>
+					<OrderContainer>Your Order:</OrderContainer>
+					{orders.map(order => (
+						<OrderContainer>
+							<OrderItem>
+								<div>1</div>
+								<div>{order.name}</div>
+								<div>{formatPrice(order.price)}</div>
+								<div>delete</div>
+							</OrderItem>
+						</OrderContainer>
+					))}
+				</OrderContent>
 			)}
 
 			<DialogFooter>

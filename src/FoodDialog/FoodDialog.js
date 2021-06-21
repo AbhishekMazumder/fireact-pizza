@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { FoodLabel } from '../Menu/FoodGrid';
 import { pizzaRed } from '../Styles/colors';
+import { formatPrice } from '../Data/foodData';
 
 const DialogShadow = styled.div`
 	position: fixed;
@@ -51,6 +52,7 @@ export const DialogFooter = styled.div`
 	/* border: 2px solid red; */
 	height: 60px;
 	text-align: center;
+	box-shadow: 0px -2px 15px 3px grey;
 `;
 
 export const ConfirmBtn = styled.button`
@@ -92,7 +94,9 @@ const FoodDialog = ({ openFood, setOpenFood, setOrders, orders }) => {
 				</DialogBanner>
 				<DialogContent>Content</DialogContent>
 				<DialogFooter>
-					<ConfirmBtn onClick={addToOrder}>Order</ConfirmBtn>
+					<ConfirmBtn onClick={addToOrder}>
+						Add To Order {formatPrice(openFood.price)}
+					</ConfirmBtn>
 				</DialogFooter>
 			</Dialog>
 		</>
