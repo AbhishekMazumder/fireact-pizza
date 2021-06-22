@@ -127,7 +127,7 @@ function Order({ orders, setOrders, setOpenFood }) {
 				</OrderContent>
 			)}
 			<DialogFooter>
-				<ConfirmBtn>checkout</ConfirmBtn>
+				<ConfirmBtn disabled={orders.length < 1}>checkout</ConfirmBtn>
 			</DialogFooter>
 		</OrderStyled>
 	);
