@@ -5,6 +5,8 @@ import { pizzaRed } from '../Styles/colors';
 import { formatPrice } from '../Data/foodData';
 import QuantityInput from './QuantityInput';
 import { useQuantity } from '../hooks/useQuantity';
+import { Toppings } from './Toppings';
+import { useToppings } from '../hooks/useToppings';
 
 const DialogShadow = styled.div`
 	position: fixed;
@@ -35,7 +37,7 @@ const DialogBanner = styled.div`
 	min-height: 200px;
 	background-position: center;
 	background-size: cover;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	${({ img }) => `background-image: url(${img})`}
 `;
 
@@ -48,11 +50,10 @@ const DialogBannerLabel = styled(FoodLabel)`
 export const DialogContent = styled.div`
 	overflow: auto;
 	min-height: 100px;
-	padding: 10px 40px;
+	padding: 0px 40px 40px;
 `;
 
 export const DialogFooter = styled.div`
-	/* border: 2px solid red; */
 	height: 60px;
 	text-align: center;
 	box-shadow: 0px -2px 15px 3px grey;
@@ -60,7 +61,6 @@ export const DialogFooter = styled.div`
 
 export const ConfirmBtn = styled.button`
 	margin: 10px;
-	/* font-size:15px; */
 	background-color: ${pizzaRed};
 	font-family: 'Righteous', cursive;
 	letter-spacing: 1.3px;
@@ -73,25 +73,37 @@ export const ConfirmBtn = styled.button`
 	text-transform: uppercase;
 `;
 
+const pricePerTopping = 0.5; //PRICE FOR EACH TOPPING
+
 export const getPrice = order => {
-	return order.quantity * order.price;
+	return (
+		order.quantity *
+		(order.price +
+			order.toppings.filter(t => t.checked).length * pricePerTopping)
+	);
 };
+
+function hasToppings(food) {
+	return food.section === 'Pizza';
+}
 
 const FoodDialogContainer = ({ openFood, setOpenFood, setOrders, orders }) => {
 	const quantity = useQuantity(openFood && openFood.quantity);
-	const order = { ...openFood, quantity: quantity.value };
+	const toppings = useToppings(openFood.toppings);
+	const order = {
+		...openFood,
+		quantity: quantity.value,
+		toppings: toppings.toppings,
+	};
+
 	const closeDialog = () => {
 		setOpenFood();
 	};
-
-	console.log(order);
 
 	const addToOrder = () => {
 		setOrders([...orders, order]);
 		closeDialog();
 	};
-
-	console.log(orders);
 
 	return openFood ? (
 		<>
@@ -102,6 +114,12 @@ const FoodDialogContainer = ({ openFood, setOpenFood, setOrders, orders }) => {
 				</DialogBanner>
 				<DialogContent>
 					<QuantityInput quantity={quantity} />
+					{hasToppings(openFood) && (
+						<>
+							<h3>Would you like extra toppings?</h3>
+							<Toppings {...toppings} />
+						</>
+					)}
 				</DialogContent>
 				<DialogFooter>
 					<ConfirmBtn onClick={addToOrder}>

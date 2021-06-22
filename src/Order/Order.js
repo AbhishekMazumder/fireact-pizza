@@ -13,10 +13,7 @@ const OrderStyled = styled.div`
 	top: 57.5px;
 	right: 0;
 	width: 350px;
-	height: 89vh;
-	/* min-height: 100px; */
-	/* height: 680px; */
-	/* border: 1px solid orange; */
+	height: calc(100vh - 57.6px);
 	background-color: white;
 	z-index: 10;
 	box-shadow: 0px 0px 20px 3px grey;
@@ -41,6 +38,12 @@ const OrderItem = styled.div`
 	grid-template-columns: 20px 150px 60px 20px;
 `;
 
+const DetailItem = styled.div`
+	color: gray;
+	font-size: 12px;
+	font-weight: bold;
+`;
+
 function Order({ orders }) {
 	const subTotal = orders.reduce((total, order) => {
 		return total + getPrice(order);
@@ -62,6 +65,12 @@ function Order({ orders }) {
 								<div>{formatPrice(getPrice(order))}</div>
 								<div>delete</div>
 							</OrderItem>
+							<DetailItem>
+								{order.toppings
+									.filter(t => t.checked)
+									.map(topping => topping.name)
+									.join(', ')}
+							</DetailItem>
 						</OrderContainer>
 					))}
 					<OrderContainer>
