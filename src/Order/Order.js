@@ -30,6 +30,17 @@ const OrderContent = styled(DialogContent)`
 const OrderContainer = styled.div`
 	padding: 10px 0;
 	border-bottom: 2px solid #eee;
+	${({ editable }) =>
+		editable
+			? `
+    &:hover {
+      cursor: pointer;
+      background-color: #e7e7e7;
+    }
+  `
+			: `
+    pointer-events: none; 
+  `}
 `;
 
 const OrderItem = styled.div`
@@ -44,12 +55,20 @@ const DetailItem = styled.div`
 	font-weight: bold;
 `;
 
-function Order({ orders }) {
+function Order({ orders, setOrders, setOpenFood }) {
 	const subTotal = orders.reduce((total, order) => {
 		return total + getPrice(order);
 	}, 0);
 	const tax = subTotal * 0.07;
 	const total = subTotal + tax;
+
+	// DELETE ITEM FROM ORDER
+	const deleteItem = index => {
+		const newOrders = [...orders];
+		newOrders.splice(index, 1);
+		setOrders(newOrders);
+	};
+
 	return (
 		<OrderStyled>
 			{orders.length === 0 ? (
@@ -57,13 +76,27 @@ function Order({ orders }) {
 			) : (
 				<OrderContent>
 					<OrderContainer>Your Order:</OrderContainer>
-					{orders.map(order => (
-						<OrderContainer>
-							<OrderItem>
+					{orders.map((order, index) => (
+						<OrderContainer editable>
+							<OrderItem onClick={() => setOpenFood({ ...order, index })}>
 								<div>{order.quantity}</div>
 								<div>{order.name}</div>
 								<div>{formatPrice(getPrice(order))}</div>
-								<div>delete</div>
+								<div
+									style={{
+										marginLeft: '50px',
+										textAlign: 'center',
+										cursor: 'pointer',
+										color: 'red',
+										fontWeight: 'bolder',
+									}}
+									onClick={e => {
+										e.stopPropagation();
+										deleteItem(index);
+									}}
+								>
+									X
+								</div>
 							</OrderItem>
 							<DetailItem>
 								{order.toppings
