@@ -35,7 +35,7 @@ const OrderContainer = styled.div`
 const OrderItem = styled.div`
 	padding: 10px 0;
 	display: grid;
-	grid-template-columns: 20px 150px 60px 20px;
+	grid-template-columns: 10px 160px 60px 20px;
 `;
 
 const DetailItem = styled.div`
@@ -71,6 +71,7 @@ function Order({ orders }) {
 									.map(topping => topping.name)
 									.join(', ')}
 							</DetailItem>
+							{order.choice && <DetailItem>{order.choice}</DetailItem>}
 						</OrderContainer>
 					))}
 					<OrderContainer>
